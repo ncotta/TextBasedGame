@@ -1,5 +1,5 @@
 """
-A Text-Based Adventure Game
+Dice Rolling Program
 Author: Niklaas Cotta
 """
 
@@ -38,14 +38,14 @@ def diceRoll():
         for i, j in enumerate(diceList):
             print(f"[{i + 1}]", j)
 
-        choice = int(input('What dice would you like to use?'))
+        choice = int(input('What dice would you like to use?\n'))
         if not (1 <= choice <= 7):
             print("Invalid option. Please try again.")
-            pass
+            continue
 
         result = diceChoices(choice)
         print('Rolling the dice!')
-        print('You rolled a ', choice, ' and got a: ', result)
+        print('You rolled a', diceList[choice-1], 'and got a', result)
 
         dice_next = input('Roll again?\n'
                           '[1] Yes\n'
