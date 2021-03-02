@@ -7,9 +7,10 @@ import random
 
 
 class Race:
-    def __init__(self, name, appearance):
+    def __init__(self, name, appearance, attribute):
         self.name = name
         self.appearance = appearance
+        self.attribute = attribute
 
     def queryName(self):
         suffix = ["clan.", "people.", "race."]
@@ -23,20 +24,39 @@ class Race:
 class Lizard(Race):
     def __init__(self):
         super().__init__("Lizard",
-                         "a large, green, and frighteningly ferocious reptile")
+                         "a large, green, and frighteningly ferocious reptile",
+                         "fire")
 
 
 class Werepus(Race):
     def __init__(self):
         super().__init__("Werepus",
-                         "your friendly neighborhood cephalopod but with a wild side!")
+                         "your friendly neighborhood cephalopod, now including a wild side!",
+                         "water")
+
+
+class MonsterA(Race):
+    def __init__(self):
+        super().__init__("Monster-a",
+                         "a luscious sentient plant with beautiful fenestrations",
+                         "grass")
 
 
 if __name__ == '__main__':
+    """
     myLizard = Lizard()
     myLizard.queryName()
     myLizard.queryLooks()
+    print(myLizard.attribute)
 
     myWerepus = Werepus()
     myWerepus.queryName()
     myWerepus.queryLooks()
+    print(myWerepus.attribute)
+
+    myMonsterA = MonsterA()
+    myMonsterA.queryName()
+    myMonsterA.queryLooks()
+    print(myMonsterA.attribute)
+    """
+    pass

@@ -61,4 +61,5 @@ def diceRoll():
 
 
 if __name__ == '__main__':
-    diceRoll()
+    # diceRoll()
+    pass
