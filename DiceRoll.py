@@ -32,7 +32,7 @@ def diceRoll():
     Inputs: None
     Outputs: None
     """
-    diceList = ['D20,', 'D12', 'D10', 'D8', 'D6', 'D4', 'D2']
+    diceList = ['D20', 'D12', 'D10', 'D8', 'D6', 'D4', 'D2']
 
     while True:
         for i, j in enumerate(diceList):
@@ -43,16 +43,21 @@ def diceRoll():
             print("Invalid option. Please try again.")
             continue
 
-        result = diceChoices(choice)
-        print('Rolling the dice!')
-        print('You rolled a', diceList[choice-1], 'and got a', result)
+        while True:
+            result = diceChoices(choice)
+            print('Rolling the dice!')
+            print('You rolled a', diceList[choice-1], 'and got a', result)
 
-        dice_next = input('Roll again?\n'
-                          '[1] Yes\n'
-                          '[2] No\n')
+            dice_next = input('Roll again?\n'
+                              '[1] Same Dice\n'
+                              '[2] Different Dice\n'
+                              '[3] Quit\n')
 
-        if not (dice_next == '1'):
-            break  # quit
+            if dice_next != '1':
+                break
+
+        if dice_next == '3':
+            break
 
 
 if __name__ == '__main__':
