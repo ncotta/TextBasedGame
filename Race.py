@@ -20,6 +20,10 @@ class Race:
     def queryLooks(self):
         print("You appear to be...", self.appearance)
 
+    def passive(self):
+        # gets overridden by subclass method
+        pass
+
 
 class Lizard(Race):
     def __init__(self):

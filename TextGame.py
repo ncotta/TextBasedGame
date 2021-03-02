@@ -44,6 +44,10 @@ class Race:
         print(f"Max HP: {self.hp}")
         print(f"Attack: {self.attack}\n")
 
+    def ability(self):
+        # placeholder, gets overridden by subclass method
+        pass
+
     @classmethod
     def get_race(cls, name):
         """
@@ -106,7 +110,7 @@ class Race:
                 print("You've won the battle!")
                 break
 
-            self.ability()  # FIXME
+            self.ability()
             enemy.ability()
 
 
@@ -120,7 +124,7 @@ class Lizard(Race):
                 attack; int, hp dealt per attack
         Outputs: none
         """
-        super().__init__(name, passive, hp, attack)  # FIXME
+        super().__init__(name, passive, hp, attack)
 
         self.name = 'Lizardman'
         self.passive = 'Regrowth'
@@ -147,7 +151,7 @@ class Werepus(Race):
                 attack; int, hp dealt per attack
         Outputs: none
         """
-        super().__init__(name, passive, hp, attack)  # FIXME
+        super().__init__(name, passive, hp, attack)
 
         self.name = 'Werepus'
         self.passive = 'Were am I'
