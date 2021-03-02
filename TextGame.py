@@ -8,55 +8,7 @@ Last Updated: 2/16
 # Not sure
 
 import time
-import random
-
-
-def dice_roll_helper(dice):
-    """
-    Desc: A helper function for the dice roll
-    Inputs: dice; a str to determine which dice to roll
-    Outputs: int
-    """
-    print("Rolling the dice!")
-
-    time.sleep(0.5)
-    dices = {
-        1: random.randint(1, 20),  # D20
-        2: random.randint(1, 12),  # D12
-        3: random.randint(1, 10),  # D10
-        4: random.randint(1, 8),  # D8
-        5: random.randint(1, 6),  # D6
-        6: random.randint(1, 4),  # D4
-        7: random.randint(1, 2)  # D2
-    }
-    print("You rolled the dice and got a:", dices[dice])
-
-    return dices[dice]
-
-
-def dice_roll():
-    """
-    Desc: Contains logic for rolling specified dice
-    Inputs: none
-    Outputs: none
-    """
-    dice_choices = ['D20', 'D12', 'D10', 'D8', 'D6', 'D4', 'D2']
-
-    while True:
-        for i, j in enumerate(dice_choices):
-            print(f"[{i + 1}]", j)
-
-        choice = int(input('What dice would you like to use?:'))
-        dice_roll_helper(choice)
-        time.sleep(0.5)
-        dice_next = input("Roll again?\n"
-                          "[1] Yes\n"
-                          "[2] No")
-
-        if dice_next == "1":
-            continue
-        else:
-            break
+from DiceRoll import *
 
 
 ########################################################################################################################
@@ -154,7 +106,7 @@ class Race:
                 print("You've won the battle!")
                 break
 
-            self.ability() # FIXME
+            self.ability()  # FIXME
             enemy.ability()
 
 
@@ -263,7 +215,7 @@ def start_menu():
             # race_select()
             break
         elif choice == 2:
-            dice_roll()
+            diceRoll()  # from DiceRoll.py
         elif choice == 3:
             print("Farewell!")
             exit()
