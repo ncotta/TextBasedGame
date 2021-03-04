@@ -14,11 +14,11 @@ class Brute(MyClass):
         super().__init__("Brute")
 
 
-class Acrobat(MyClass):
+class MonkEY(MyClass):
     def __init__(self):
-        super().__init__("Acrobat")
+        super().__init__("Monk(ey)")
 
 
-class Magician(MyClass):
+class WitchDoctor(MyClass):
     def __init__(self):
-        super().__init__("Magician")
+        super().__init__("Witch Doctor")
