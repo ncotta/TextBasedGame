@@ -28,14 +28,14 @@ class Race:
 class Lizard(Race):
     def __init__(self):
         super().__init__("Lizard",
-                         "a large, green, and frighteningly ferocious reptile",
+                         "a large lizard with green scales that glisten in the sun. You lick your eyeball casually.",
                          "fire")
 
 
 class Werepus(Race):
     def __init__(self):
         super().__init__("Werepus",
-                         "your friendly neighborhood cephalopod, now including a wild side!",
+                         "a friendly neighborhood cephalopod, now includes claws!",
                          "water")
 
 

@@ -23,8 +23,10 @@ class Character:
 
     def info(self):
         print('\n======= Character Info =======')
-        print(f"{self.name}")
-        print(f"{self.myRace.name} {self.myClass.name}")
+        print(f"Hello, {self.name}")
+        self.myRace.queryLooks()
+        self.myClass.queryLooks()
+        print(f"You are a {self.myRace.name}, and a {self.myClass.name} to boot!")
         print(f"HP: {self.hp}")
         print(f"Attack: {self.attack}")
         print(f"Defense: {self.defense}")
@@ -87,4 +89,4 @@ if __name__ == '__main__':
     """
     characterObj = Character.get_input()
     characterObj.info()
-    print(characterObj.inventory)
+    # print(characterObj.inventory)
