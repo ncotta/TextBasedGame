@@ -32,35 +32,6 @@ class Race:
         self.hp = hp
         self.inventory = inventory
 
-    def info(self):
-        """
-        Desc: print function for race information
-        Inputs: none
-        Outputs: none
-        """
-        print('\n======= Character Info =======')
-        print(f"Race: {self.name}")
-        print(f"Passive: {self.passive}")
-        print(f"Max HP: {self.hp}")
-        print(f"Attack: {self.attack}\n")
-
-    def ability(self):
-        # placeholder, gets overridden by subclass method
-        pass
-
-    @classmethod
-    def get_race(cls, name):
-        """
-        Desc: gets the race from user input and creates race object. kinda messy, could clean up
-        Inputs: name; str, the name of the race
-        Outputs: (function)
-        """
-        attributes = {'Lizard': {'passive': 'Regrowth', 'hp': 20, 'attack': 4},
-                      'Werepus': {'passive': 'Were am I', 'hp': 15, 'attack': 3}
-                      }
-
-        return cls(name, attributes[name]['passive'], attributes[name]['hp'], attributes[name]['attack'])
-
     def fight(self, enemy):
         """
         Desc: Fight sequence between two race objects
@@ -169,30 +140,6 @@ class Werepus(Race):
 
 
 ########################################################################################################################
-def race_select():
-    """
-    Desc: Function for user to choose desired race
-    Inputs: none
-    Outputs: none
-    """
-    races = ['Lizard', 'Werepus']
-    race_map = {'Lizard': Lizard, 'Werepus': Werepus}
-
-    while True:
-        for i, j in enumerate(races):
-            print(f"[{i + 1}]", j)
-
-        choice = int(input('Pick a race:'))
-
-        if choice <= len(races):
-            print('You are a', races[choice - 1])
-            race_initializer = race_map.get(races[choice - 1], None)
-            character = race_initializer.get_race(races[choice - 1])
-            return character
-        else:
-            continue
-
-
 ########################################################################################################################
 def start_menu():
     """
@@ -228,14 +175,11 @@ def start_menu():
 
 
 ########################################################################################################################
-def opening():
-    pass
-
 
 if __name__ == '__main__':
     # start the game
     start_menu()
-    player = race_select()
+    player = Lizard('Lizard', 'Regrowth', 10, 5)
     opponent = Werepus('Werepus', 'Were am I', 15, 3)
     player.info()
     player.fight(opponent)

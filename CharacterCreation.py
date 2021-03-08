@@ -3,8 +3,7 @@ Character Creator Program
 Author: Niklaas Cotta
 """
 
-from Race import *
-from Class import *
+from Selection import *
 
 
 class Character:
@@ -33,34 +32,13 @@ class Character:
 
     @classmethod
     def get_input(cls):
-        raceObj = None
-        race = input("What is your race?\n")
-
-        if race == "Lizard":
-            raceObj = Lizard()
-        elif race == "Werepus":
-            raceObj = Werepus()
-        elif race == "Monster-a":
-            raceObj = MonsterA()
-        else:
-            print("Unrecognizable")  # FIXME
-
-        classObj = None
-        myClass = input("What is your class?\n")
-
-        if myClass == "Brute":
-            classObj = Brute()
-        elif myClass == "MonkEY":
-            classObj = MonkEY()
-        elif myClass == "WitchDoctor":
-            classObj = WitchDoctor()
-        else:
-            print("Unrecognizable")  # FIXME
+        raceObj = race_select()
+        classObj = class_select()
 
         return cls(
             input("What is your name?\n"),  # name
-            raceObj,
-            classObj,
+            raceObj,  # race choice
+            classObj,  # class choice
             [20, 10, 5]  # stats
         )
 
@@ -73,7 +51,6 @@ class Character:
             print(f"Enemy HP: {enemy.hp}")
 
             if self.speed > enemy.speed:
-                pass
     """
 
 

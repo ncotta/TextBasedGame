@@ -58,8 +58,3 @@ def diceRoll():
 
         if dice_next == '3':
             break
-
-
-if __name__ == '__main__':
-    # diceRoll()
-    pass

@@ -44,23 +44,3 @@ class MonsterA(Race):
         super().__init__("Monster-a",
                          "a luscious sentient plant with beautiful fenestrations",
                          "grass")
-
-
-if __name__ == '__main__':
-    """
-    myLizard = Lizard()
-    myLizard.queryName()
-    myLizard.queryLooks()
-    print(myLizard.attribute)
-
-    myWerepus = Werepus()
-    myWerepus.queryName()
-    myWerepus.queryLooks()
-    print(myWerepus.attribute)
-
-    myMonsterA = MonsterA()
-    myMonsterA.queryName()
-    myMonsterA.queryLooks()
-    print(myMonsterA.attribute)
-    """
-    pass
