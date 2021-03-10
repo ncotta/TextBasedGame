@@ -29,17 +29,19 @@ class Character:
         print(f"HP: {self.hp}")
         print(f"Attack: {self.attack}")
         print(f"Defense: {self.defense}")
+        print(f"Speed: {self.speed}")
 
     @classmethod
     def get_input(cls):
-        raceObj = race_select()
-        classObj = class_select()
+        mySelection = Selection()
+        raceObj = mySelection.race_select()
+        classObj = mySelection.class_select()
 
         return cls(
             input("What is your name?\n"),  # name
             raceObj,  # race choice
             classObj,  # class choice
-            [20, 10, 5]  # stats
+            classObj.statsList  # stats
         )
 
     """

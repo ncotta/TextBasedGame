@@ -3,72 +3,74 @@ User input selection choices
 Author: Niklaas Cotta
 """
 
-from CharacterCreation import *
 from Race import *
 from Class import *
 
 
-def race_select():
-    races = ['Lizard', 'Werepus', 'Monster-a']
+class Selection:
+    def __init__(self, statsList=None):
+        self.statsList = statsList
 
-    while True:
-        print("Pick a race!")
+    def race_select(self):
+        races = ['Lizard', 'Werepus', 'Monster-a']
+        result = None
 
-        for i, j in enumerate(races):
-            print(f"[{i + 1}]", j)
+        while True:
+            print("Pick a race!")
 
-        choice = int(input('>> '))
+            for i, j in enumerate(races):
+                print(f"[{i + 1}]", j)
 
-        if choice <= len(races):
-            # print('You are a', races[choice - 1])
-            if choice == 1:
-                result = Lizard()
-                break
-            elif choice == 2:
-                result = Werepus()
-                break
-            elif choice == 3:
-                result = MonsterA()
-                break
-            else:
-                print("Unrecognizable, try again.")
-                continue
+            choice = int(input('>> '))
 
-    return result
+            if choice <= len(races):
+                # print('You are a', races[choice - 1])
+                if choice == 1:
+                    self.statsList = [12, 10, 8]
+                    result = Lizard(self.statsList)
+                    break
+                elif choice == 2:
+                    self.statsList = [8, 12, 10]
+                    result = Werepus(self.statsList)
+                    break
+                elif choice == 3:
+                    self.statsList = [10, 8, 12]
+                    result = MonsterA(self.statsList)
+                    break
+                else:
+                    print("Unrecognizable, try again.")
+                    continue
 
+        return result
 
-def class_select():
-    classes = ['Brute', 'Monk(ey)', 'Witch Doctor']
+    def class_select(self):
+        classes = ['Brute', 'Monk(ey)', 'Witch Doctor']
+        result = None
 
-    while True:
-        print("Pick a class!")
+        while True:
+            print("Pick a class!")
 
-        for i, j in enumerate(classes):
-            print(f"[{i + 1}]", j)
+            for i, j in enumerate(classes):
+                print(f"[{i + 1}]", j)
 
-        choice = int(input('>> '))
+            choice = int(input('>> '))
 
-        if choice <= len(classes):
-            # print('You are a', classes[choice - 1])
-            if choice == 1:
-                result = Brute()
-                break
-            elif choice == 2:
-                result = MonkEY()
-                break
-            elif choice == 3:
-                result = WitchDoctor()
-                break
-            else:
-                print("Unrecognizable, try again.")
-                continue
+            if choice <= len(classes):
+                # print('You are a', classes[choice - 1])
+                if choice == 1:
+                    result = Brute(self.statsList)
+                    break
+                elif choice == 2:
+                    result = MonkEY(self.statsList)
+                    break
+                elif choice == 3:
+                    result = WitchDoctor(self.statsList)
+                    break
+                else:
+                    print("Unrecognizable, try again.")
+                    continue
 
-    return result
+        return result
 
-
-# FIXME: don't need?
-def character_selection(name):
-    race = race_select()
-    myClass = class_select()
-
-    return Character(name, race, myClass, [20, 10])
+    def character_selection(self, name):
+        pass
