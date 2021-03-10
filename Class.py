@@ -28,7 +28,7 @@ class MonkEY(MyClass):
                          "As one of the monks from beyond the Great Eastern Sea, your unique fighting style usually "
                          "involves flinging poo", statsList)
 
-        statsList[1] += 2
+        statsList[2] += 2
 
 
 class WitchDoctor(MyClass):
@@ -37,4 +37,4 @@ class WitchDoctor(MyClass):
                          "Dark and mysterious, are you a witch or are you a doctor? No one knows...well, except you",
                          statsList)
 
-        statsList[2] += 2
+        statsList[1] += 2

@@ -4,6 +4,7 @@ Author: Niklaas Cotta
 """
 
 from Selection import *
+import random
 
 
 class Character:
@@ -31,6 +32,12 @@ class Character:
         print(f"Defense: {self.defense}")
         print(f"Speed: {self.speed}")
 
+    def critical(self):
+        critHit = (random.randint(0, 100) > 90)  # 10%
+
+        if critHit:
+            self.attack *= 1.5  # FIXME: temporary, maybe put in attack class or something
+
     @classmethod
     def get_input(cls):
         mySelection = Selection()
@@ -57,15 +64,6 @@ class Character:
 
 
 if __name__ == '__main__':
-    """
-    attack = 20
-    defense = 10
-    speed = 5
-    inv = ["50 gp", "Magic sword"]
-    testRace = Lizard()
-    testClass = Brute()
-    characterObj = Character("Bobby Schmurda", testRace, testClass, [attack, defense, speed], inv)
-    """
     characterObj = Character.get_input()
     characterObj.info()
     # print(characterObj.inventory)

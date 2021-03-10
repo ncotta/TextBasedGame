@@ -12,7 +12,8 @@ class Selection:
         self.statsList = statsList
 
     def race_select(self):
-        races = ['Lizard', 'Werepus', 'Monster-a']
+        races = ['Lizard      (very strong, a bit sluggish)', 'Werepus     (very formidable, a bit weak)',
+                 'Monster-a   (very fast, a bit fragile)']
         result = None
 
         while True:
@@ -44,7 +45,7 @@ class Selection:
         return result
 
     def class_select(self):
-        classes = ['Brute', 'Monk(ey)', 'Witch Doctor']
+        classes = ['Brute        (+atk)', 'Monk(ey)     (+spe)', 'Witch Doctor (+def)']
         result = None
 
         while True:
