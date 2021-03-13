@@ -4,7 +4,7 @@ Author: Niklaas Cotta
 """
 
 from Selection import *
-import random
+from Battle import *
 
 
 class Character:
@@ -32,20 +32,19 @@ class Character:
         print(f"Defense: {self.defense}")
         print(f"Speed: {self.speed}")
 
-    def critical(self):
-        critHit = (random.randint(0, 100) > 90)  # 10%
-
-        if critHit:
-            self.attack *= 1.5  # FIXME: temporary, maybe put in attack class or something
+    def fight(self, style):
+        # getFight = Fight(1v1)
+        pass
 
     @classmethod
     def get_input(cls):
         mySelection = Selection()
         raceObj = mySelection.race_select()
         classObj = mySelection.class_select()
+        print("What is your name?\n")
 
         return cls(
-            input("What is your name?\n"),  # name
+            input(">> "),  # name
             raceObj,  # race choice
             classObj,  # class choice
             classObj.statsList  # stats
@@ -66,4 +65,8 @@ class Character:
 if __name__ == '__main__':
     characterObj = Character.get_input()
     characterObj.info()
+    test = [10, 10, 10]
+    enemyObj = Character("Scary boi", Lizard(test), Brute(test), test)
+    battle = Fight(characterObj, enemyObj).order()
+
     # print(characterObj.inventory)
