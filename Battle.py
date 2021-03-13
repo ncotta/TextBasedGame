@@ -18,21 +18,26 @@ class Fight:
         self.enemyMoves = ["Rake", "Claw", "Bite"]
         print(f"A {enemy.name} attacks!")
 
-    def order(self):
-        youFirst = self.yourSpeed >= self.enemySpeed
+    def battle(self):
+        while (self.yourHP > 0) and (self.enemyHP > 0):
+            youFirst = self.yourSpeed >= self.enemySpeed
 
-        if youFirst:
-            self.choices()
-            self.enemyAttack()
+            if youFirst:
+                escaped = self.yourTurn()
+                if escaped:
+                    break
+                self.enemyAttack()
 
-        else:
-            self.enemyAttack()
-            self.choices()
+            else:
+                self.enemyAttack()
+                escaped = self.yourTurn()
+                if escaped:
+                    break
 
-    def choices(self):  # Two choices, attack or run away
-        escape = False
+    def yourTurn(self):
+        escaped = False
 
-        while not escape and (self.yourHP > 0) and (self.enemyHP > 0):  # FIXME
+        while True:
             print("What are you going to do?")
 
             print("[1] Attack",
@@ -44,10 +49,13 @@ class Fight:
                 self.yourAttack()
                 break
             elif choice == 2:
-                escape = self.run()
+                escaped = self.run()
+                break
             else:
                 print("You can't do that!")
                 continue
+
+        return escaped
 
     def yourAttack(self):
         while True:
@@ -61,6 +69,8 @@ class Fight:
             print("You used a move!")
             break
 
+        return self.yourMoves[choice - 1]
+
     def enemyAttack(self):
         enemyChoice = random.randint(0, 3)
         print("The enemy attacks!")
@@ -68,7 +78,7 @@ class Fight:
         return self.enemyMoves[enemyChoice - 1]
 
     def run(self):
-        escape = (random.randint(0, 100) > 25)
+        escape = (random.randint(0, 100) > 75)  # 25% chance
 
         if escape:
             print('You ran away successfully!\n')
@@ -87,7 +97,8 @@ class Move:
     def critical(self):
         critHit = (random.randint(0, 100) > 90)  # 10%
 
-        if critHit:
+        if critHit:  # FIXME: temporary
+            print("You landed a critical!!")
             self.attack *= 1.5
 
 

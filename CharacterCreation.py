@@ -66,7 +66,8 @@ if __name__ == '__main__':
     characterObj = Character.get_input()
     characterObj.info()
     test = [10, 10, 10]
+    print("")
     enemyObj = Character("Scary boi", Lizard(test), Brute(test), test)
-    battle = Fight(characterObj, enemyObj).order()
+    battle = Fight(characterObj, enemyObj).battle()
 
     # print(characterObj.inventory)
