@@ -4,6 +4,7 @@ Author: Niklaas Cotta
 """
 
 import random
+from Moves import *
 
 
 class Fight:
@@ -13,25 +14,53 @@ class Fight:
         self.enemySpeed = enemy.speed
         self.enemyHP = enemy.hp
         # self.yourMoves = char.moves
-        self.yourMoves = ["Rake", "Claw", "Bite"]
+        self.yourMoves = [Rake(), Regrowth()]
         # self.enemyMoves = enemy.moves
-        self.enemyMoves = ["Rake", "Claw", "Bite"]
+        self.enemyMoves = [Rake(), Regrowth(), Splash()]
         print(f"A {enemy.name} attacks!")
 
     def battle(self):
         while (self.yourHP > 0) and (self.enemyHP > 0):
+            print("======================")
+            print(f"Your HP: {self.yourHP}")
+            print(f"Enemy HP: {self.enemyHP}")
+            print("======================")
             youFirst = self.yourSpeed >= self.enemySpeed
 
-            if youFirst:
+            if youFirst:  # FIXME: can cut down some if statements
                 escaped = self.yourTurn()
                 if escaped:
                     break
+
+                if self.enemyHP <= 0:
+                    print("Enemy HP is 0!")
+                    print("You've won the battle!")
+                    break
+
                 self.enemyAttack()
+
+                if self.yourHP <= 0:
+                    print("Your HP is 0!")
+                    print("You've lost the battle! :(")
+                    print("Game OVER")
+                    break
 
             else:
                 self.enemyAttack()
+
+                if self.yourHP <= 0:
+                    print("Your HP is 0!")
+                    print("You've lost the battle! :(")
+                    print("Game OVER")
+                    break
+
                 escaped = self.yourTurn()
                 if escaped:
+                    break
+
+                if self.enemyHP <= 0:
+                    print("Enemy HP is 0!")
+                    print("You've won the battle!")
                     break
 
     def yourTurn(self):
@@ -46,7 +75,10 @@ class Fight:
             choice = int(input('>> '))
 
             if choice == 1:
-                self.yourAttack()
+                if self.yourMoves[choice - 1].tag == "enemy":
+                    self.enemyHP -= self.yourAttack().damage
+                else:  # tag is self
+                    self.yourHP -= self.yourAttack().damage
                 break
             elif choice == 2:
                 escaped = self.run()
@@ -62,18 +94,24 @@ class Fight:
             print("What move would you like to use?")
 
             for i, j in enumerate(self.yourMoves):
-                print(f"[{i + 1}]", j)
+                print(f"[{i + 1}]", j.name)
 
             choice = int(input(">> "))
 
-            print("You used a move!")
+            print(f"You used {self.yourMoves[choice - 1].name}")
+
             break
 
         return self.yourMoves[choice - 1]
 
     def enemyAttack(self):
-        enemyChoice = random.randint(0, 3)
-        print("The enemy attacks!")
+        enemyChoice = random.randint(0, len(self.enemyMoves))
+        if self.enemyMoves[enemyChoice - 1].tag == "enemy":
+            self.yourHP -= self.enemyMoves[enemyChoice - 1].damage
+        else:  # tag is self
+            self.enemyHP -= self.enemyMoves[enemyChoice - 1].damage
+
+        print(f"The enemy uses {self.enemyMoves[enemyChoice - 1].name}")
 
         return self.enemyMoves[enemyChoice - 1]
 
@@ -86,22 +124,3 @@ class Fight:
             print('Escape unsuccessful!\n')
 
         return escape
-
-
-class Move:
-    def __init__(self, name, attack, effect=None):
-        self.name = name
-        self.attack = attack
-        self.effect = effect
-
-    def critical(self):
-        critHit = (random.randint(0, 100) > 90)  # 10%
-
-        if critHit:  # FIXME: temporary
-            print("You landed a critical!!")
-            self.attack *= 1.5
-
-
-class Rake(Move):
-    def __init__(self):
-        super().__init__("Rake", 5)

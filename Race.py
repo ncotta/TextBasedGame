@@ -7,11 +7,12 @@ import random
 
 
 class Race:
-    def __init__(self, name, appearance, attribute, statsList):
+    def __init__(self, name, appearance, attribute, statsList, movesList):
         self.name = name
         self.appearance = appearance
         self.attribute = attribute
         self.statsList = statsList  # [attack, defense, speed]
+        self.movesList = movesList
 
     def queryName(self):
         suffix = ["clan.", "people.", "race."]
@@ -31,7 +32,8 @@ class Lizard(Race):
         super().__init__("Lizard",
                          "a large lizard with green scales that glisten in the sun. You lick your eyeball casually.",
                          "fire",
-                         statsList)
+                         statsList,
+                         [])
 
     def passive(self):
         # Regrowth, += hp
@@ -43,7 +45,8 @@ class Werepus(Race):
         super().__init__("Werepus",
                          "a friendly neighborhood cephalopod, now includes claws!",
                          "water",
-                         statsList)
+                         statsList,
+                         [])
 
     def passive(self):
         # Clever, += attack temporarily
@@ -55,7 +58,8 @@ class MonsterA(Race):
         super().__init__("Monster-a",
                          "a luscious sentient plant with beautiful fenestrations",
                          "grass",
-                         statsList)
+                         statsList,
+                         [])
 
     def passive(self):
         # No clue tbh
