@@ -50,17 +50,6 @@ class Character:
             classObj.statsList  # stats
         )
 
-    """
-    def fight(self, enemy):
-        print(f"{self.name}   VS   {enemy.name}")
-
-        while self.hp > 0 and enemy.hp > 0:
-            print(f"Your HP: {self.hp}")
-            print(f"Enemy HP: {enemy.hp}")
-
-            if self.speed > enemy.speed:
-    """
-
 
 if __name__ == '__main__':
     characterObj = Character.get_input()

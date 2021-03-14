@@ -7,7 +7,7 @@ import random
 
 
 class Move:
-    def __init__(self, name, damage, tag="enemy", effect=None):
+    def __init__(self, name, damage, tag, effect=None):
         self.name = name  # Name of attack
         self.damage = damage  # damage
         self.tag = tag  # used on self vs enemy
@@ -26,14 +26,14 @@ class Move:
 
 class Rake(Move):
     def __init__(self):
-        super().__init__("Rake", 5)
+        super().__init__("Rake", 5, "enemy")
 
 
 class Regrowth(Move):
     def __init__(self):
-        super().__init__("Regrowth", -5, "self")
+        super().__init__("Regrowth", -4, "self")
 
 
 class Splash(Move):
     def __init__(self):
-        super().__init__("Splash", 2)
+        super().__init__("Splash", 2, "enemy")

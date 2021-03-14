@@ -75,10 +75,7 @@ class Fight:
             choice = int(input('>> '))
 
             if choice == 1:
-                if self.yourMoves[choice - 1].tag == "enemy":
-                    self.enemyHP -= self.yourAttack().damage
-                else:  # tag is self
-                    self.yourHP -= self.yourAttack().damage
+                self.yourAttack()
                 break
             elif choice == 2:
                 escaped = self.run()
@@ -99,6 +96,11 @@ class Fight:
             choice = int(input(">> "))
 
             print(f"You used {self.yourMoves[choice - 1].name}")
+
+            if self.yourMoves[choice - 1].tag == "enemy":
+                self.enemyHP -= self.yourMoves[choice - 1].damage
+            else:  # tag is self
+                self.yourHP -= self.yourMoves[choice - 1].damage
 
             break
 
