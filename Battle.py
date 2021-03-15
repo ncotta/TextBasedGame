@@ -14,9 +14,9 @@ class Fight:
         self.enemySpeed = enemy.speed
         self.enemyHP = enemy.hp
         # self.yourMoves = char.moves
-        self.yourMoves = [Rake(), Regrowth()]
+        self.yourMoves = char.movesList
         # self.enemyMoves = enemy.moves
-        self.enemyMoves = [Rake(), Regrowth(), Splash()]
+        self.enemyMoves = enemy.movesList
         print(f"A {enemy.name} attacks!")
 
     def battle(self):

@@ -4,6 +4,7 @@ Author: Niklaas Cotta
 """
 
 import random
+from Moves import *
 
 
 class Race:
@@ -33,7 +34,7 @@ class Lizard(Race):
                          "a large lizard with green scales that glisten in the sun. You lick your eyeball casually.",
                          "fire",
                          statsList,
-                         [])
+                         [Rake(), Regrowth()])
 
     def passive(self):
         # Regrowth, += hp
@@ -46,7 +47,7 @@ class Werepus(Race):
                          "a friendly neighborhood cephalopod, now includes claws!",
                          "water",
                          statsList,
-                         [])
+                         [Tentacle(), Psywave()])
 
     def passive(self):
         # Clever, += attack temporarily
@@ -59,7 +60,7 @@ class MonsterA(Race):
                          "a luscious sentient plant with beautiful fenestrations",
                          "grass",
                          statsList,
-                         [])
+                         [Thorns(), Absorb()])
 
     def passive(self):
         # No clue tbh
