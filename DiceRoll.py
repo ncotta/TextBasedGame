@@ -38,23 +38,41 @@ def diceRoll():
         for i, j in enumerate(diceList):
             print(f"[{i + 1}]", j)
 
-        choice = int(input('What dice would you like to use?\n'))
-        if not (1 <= choice <= 7):
+        print('What dice would you like to use?')
+        choice = input(">> ")
+
+        try:
+            choice = int(choice)
+            if not (1 <= choice <= 7):
+                print("Invalid option. Please try again.")
+                continue
+        except ValueError:
             print("Invalid option. Please try again.")
             continue
 
         while True:
             result = diceChoices(choice)
             print('Rolling the dice!')
-            print('You rolled a', diceList[choice-1], 'and got a', result)
+            print('You rolled a', diceList[choice - 1], 'and got a', result)
+            print('Roll again?\n'
+                  '[1] Same Dice\n'
+                  '[2] Different Dice\n'
+                  '[3] Quit')
+            dice_next = input(">> ")
 
-            dice_next = input('Roll again?\n'
-                              '[1] Same Dice\n'
-                              '[2] Different Dice\n'
-                              '[3] Quit\n')
+            try:
+                dice_next = int(dice_next)
+                if not (1 <= dice_next <= 3):
+                    print("Invalid option. Please try again.")
+            except ValueError:
+                print("Invalid option. Please try again.")
 
-            if dice_next != '1':
+            if dice_next == 2 or dice_next == 3:
                 break
 
-        if dice_next == '3':
+        if dice_next == 3:
             break
+
+
+if __name__ == '__main__':
+    diceRoll()
