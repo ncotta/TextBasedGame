@@ -29,6 +29,11 @@ class Splash(Move):
         super().__init__("Splash", 2)
 
 
+class Loaf(Move):
+    def __init__(self):
+        super().__init__("Loaf", 0)
+
+
 class Rake(Move):
     def __init__(self):
         super().__init__("Claw", 5)

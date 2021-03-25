@@ -20,21 +20,29 @@ class Fight:
         print(f"A {enemy.name} attacks!")
 
     def battle(self):
+        result = "LOST"
+
+        youFirst = self.yourSpeed >= self.enemySpeed
+
+        if not youFirst:
+            print("The enemy caught you off-guard!")
+
         while (self.yourHP > 0) and (self.enemyHP > 0):
             print("======================")
             print(f"Your HP: {self.yourHP}")
             print(f"Enemy HP: {self.enemyHP}")
             print("======================")
-            youFirst = self.yourSpeed >= self.enemySpeed
 
             if youFirst:  # FIXME: can cut down some if statements
                 escaped = self.yourTurn()
                 if escaped:
+                    result = "RAN"
                     break
 
                 if self.enemyHP <= 0:
                     print("Enemy HP is 0!")
                     print("You've won the battle!")
+                    result = "WON"
                     break
 
                 self.enemyAttack()
@@ -56,12 +64,16 @@ class Fight:
 
                 escaped = self.yourTurn()
                 if escaped:
+                    result = "RAN"
                     break
 
                 if self.enemyHP <= 0:
                     print("Enemy HP is 0!")
                     print("You've won the battle!")
+                    result = "WON"
                     break
+
+        return result
 
     def yourTurn(self):
         escaped = False

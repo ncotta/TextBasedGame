@@ -3,8 +3,10 @@ Character Creator Program
 Author: Niklaas Cotta
 """
 
+from DelayPrint import *
 from Selection import *
 from Battle import *
+import time
 
 
 class Character:
@@ -23,15 +25,20 @@ class Character:
         self.hp = 20
 
     def info(self):
+        time.sleep(1)
         print('\n======= Character Info =======')
-        print(f"Hello, {self.name}")
+        time.sleep(0.5)
+        delay_print(f"Hello, {self.name}\n")
+        time.sleep(0.5)
         self.myRace.queryLooks()
         self.myClass.queryLooks()
-        print(f"You are a {self.myRace.name}, and a {self.myClass.name} to boot!")
+        time.sleep(0.5)
+        print(f"You are a {self.myRace.name}, and a {self.myClass.name} to boot!\n")
         print(f"HP: {self.hp}")
         print(f"Attack: {self.attack}")
         print(f"Defense: {self.defense}")
-        print(f"Speed: {self.speed}")
+        print(f"Speed: {self.speed}\n")
+        time.sleep(1.5)
 
     def fight(self, style):
         # getFight = Fight(1v1)
