@@ -18,14 +18,12 @@ class Selection:
 
         while True:
             print("Pick a race!")
-
             for i, j in enumerate(races):
                 print(f"[{i + 1}]", j)
 
             choice = int(input('>> '))
 
             if choice <= len(races):
-                # print('You are a', races[choice - 1])
                 if choice == 1:
                     self.statsList = [12, 10, 8]
                     result = Lizard(self.statsList)
@@ -57,7 +55,6 @@ class Selection:
             choice = int(input('>> '))
 
             if choice <= len(classes):
-                # print('You are a', classes[choice - 1])
                 if choice == 1:
                     result = Brute(self.statsList)
                     break
@@ -72,6 +69,3 @@ class Selection:
                     continue
 
         return result
-
-    def character_selection(self, name):
-        pass

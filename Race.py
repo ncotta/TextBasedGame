@@ -1,9 +1,8 @@
 """
-Race Program
+File for races
 Author: Niklaas Cotta
 """
 
-import random
 from Moves import *
 
 
@@ -17,14 +16,13 @@ class Race:
 
     def queryName(self):
         suffix = ["clan.", "people.", "race."]
-        i = random.randint(0, 2)
-        print("You are one of the", self.name, suffix[i])
+        print("You are one of the", self.name, suffix[random.randint(0, 2)])
 
     def queryLooks(self):
         print("You appear to be...", self.appearance)
 
     def passive(self):
-        # gets overridden by subclass method
+        # gets overridden by subclass method, implement later
         pass
 
 
@@ -36,10 +34,6 @@ class Lizard(Race):
                          statsList,
                          [Rake(), Regrowth()])
 
-    def passive(self):
-        # Regrowth, += hp
-        pass
-
 
 class Werepus(Race):
     def __init__(self, statsList):  # [8, 12, 10]
@@ -49,10 +43,6 @@ class Werepus(Race):
                          statsList,
                          [Tentacle(), Psywave()])
 
-    def passive(self):
-        # Clever, += attack temporarily
-        self.statsList[1] += 1
-
 
 class MonsterA(Race):
     def __init__(self, statsList):  # [10, 8, 12]
@@ -61,7 +51,3 @@ class MonsterA(Race):
                          "grass",
                          statsList,
                          [Thorns(), Absorb()])
-
-    def passive(self):
-        # No clue tbh
-        pass

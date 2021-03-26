@@ -1,5 +1,5 @@
 """
-Class Program
+File for classes
 Author: Niklaas Cotta
 """
 
@@ -19,7 +19,7 @@ class Brute(MyClass):
         super().__init__("Brute", "Your arms are corded with muscles, with a wicked-looking greataxe slung behind "
                          "your back.", statsList)
 
-        statsList[0] += 2
+        statsList[0] += 2  # plus attack
 
 
 class MonkEY(MyClass):
@@ -28,7 +28,7 @@ class MonkEY(MyClass):
                          "As one of the monks from beyond the Great Eastern Sea, your unique fighting style usually "
                          "involves flinging poo", statsList)
 
-        statsList[2] += 2
+        statsList[2] += 2  # plus speed
 
 
 class WitchDoctor(MyClass):
@@ -37,4 +37,4 @@ class WitchDoctor(MyClass):
                          "Dark and mysterious, are you a witch or are you a doctor? No one knows...well, except you",
                          statsList)
 
-        statsList[1] += 2
+        statsList[1] += 2  # plus defense
