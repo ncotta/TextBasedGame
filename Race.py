@@ -15,10 +15,12 @@ class Race:
         self.movesList = movesList
 
     def queryName(self):
+        # Get the name for printing purposes
         suffix = ["clan.", "people.", "race."]
         print("You are one of the", self.name, suffix[random.randint(0, 2)])
 
     def queryLooks(self):
+        # Similar to name
         print("You appear to be...", self.appearance)
 
     def passive(self):
@@ -51,3 +53,12 @@ class MonsterA(Race):
                          "grass",
                          statsList,
                          [Thorns(), Absorb()])
+
+
+class Dummy(Race):
+    def __init__(self, statsList): # [10, 10, 10]
+        super().__init__("Dummy",
+                         "A training dummy. You don't like the way it's looking at you",
+                         None,
+                         statsList,
+                         [Splinter(), DoNothing()])

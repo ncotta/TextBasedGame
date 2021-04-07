@@ -12,6 +12,7 @@ class Selection:
         self.statsList = statsList
 
     def race_select(self):
+        # Select a race!
         races = ['Lizard      (very strong, a bit sluggish)', 'Werepus     (very formidable, a bit weak)',
                  'Monster-a   (very fast, a bit fragile)']
         result = None
@@ -23,7 +24,7 @@ class Selection:
 
             choice = int(input('>> '))
 
-            if choice <= len(races):
+            if choice <= len(races):  # FIXME: corner cases
                 if choice == 1:
                     self.statsList = [12, 10, 8]
                     result = Lizard(self.statsList)
@@ -43,6 +44,7 @@ class Selection:
         return result
 
     def class_select(self):
+        # Pick a class!
         classes = ['Brute        (+atk)', 'Monk(ey)     (+spe)', 'Witch Doctor (+def)']
         result = None
 
@@ -52,7 +54,7 @@ class Selection:
             for i, j in enumerate(classes):
                 print(f"[{i + 1}]", j)
 
-            choice = int(input('>> '))
+            choice = int(input('>> '))  # FIXME: corner cases
 
             if choice <= len(classes):
                 if choice == 1:

@@ -3,7 +3,6 @@ Battle instance
 Author: Niklaas Cotta
 """
 
-import random
 from Moves import *
 
 
@@ -13,9 +12,7 @@ class Fight:
         self.yourHP = char.hp
         self.enemySpeed = enemy.speed
         self.enemyHP = enemy.hp
-        # self.yourMoves = char.moves
         self.yourMoves = char.movesList
-        # self.enemyMoves = enemy.moves
         self.enemyMoves = enemy.movesList
         print(f"A {enemy.name} attacks!")
 

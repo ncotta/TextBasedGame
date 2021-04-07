@@ -14,9 +14,9 @@ class Character:
         self.name = name
         self.myRace = charRace
         self.myClass = charClass
-        self.attack = stats[0]
-        self.defense = stats[1]
-        self.speed = stats[2]
+        self.attack = stats[0]  # attack
+        self.defense = stats[1]  # defense
+        self.speed = stats[2]  # speed
         self.movesList = movesList
         if inventory is None:
             inventory = []
@@ -40,10 +40,6 @@ class Character:
         print(f"Speed: {self.speed}\n")
         time.sleep(1.5)
 
-    def fight(self, style):
-        # getFight = Fight(1v1)
-        pass
-
     @classmethod
     def get_input(cls):
         mySelection = Selection()
@@ -64,7 +60,10 @@ if __name__ == '__main__':
     characterObj = Character.get_input()
     characterObj.info()
     print("")
-    enemyObj = Character("Scary boi", Lizard([12, 10, 8]), Brute([12, 10, 8]), [12, 10, 8], [Rake(), Regrowth()])
+    stats = [10, 10, 10]
+    enemyRace = Dummy(stats)
+    enemyObj = Character("Dummy", enemyRace, None, stats, enemyRace.movesList)
+    enemyObj.hp = 10
     battle = Fight(characterObj, enemyObj).battle()
 
     # print(characterObj.inventory)

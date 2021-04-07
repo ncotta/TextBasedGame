@@ -3,10 +3,8 @@ Bringing it all together
 Author: Niklaas Cotta
 """
 
-import time
 from CharacterCreation import *
 from DiceRoll import *
-# from Help import *
 
 
 def title():
@@ -97,12 +95,7 @@ def getEnemy():
     else:  # WitchDoctor
         enemyClass = WitchDoctor(stats)
 
-    extraMoves = [Splash(), Loaf()]
-    enemyMoves = enemyRace.movesList + extraMoves
-
-    return Character(enemyName, enemyRace, enemyClass, stats, enemyMoves)
-
-
+    return Character(enemyName, enemyRace, enemyClass, stats, enemyRace.movesList)
 
 
 if __name__ == '__main__':

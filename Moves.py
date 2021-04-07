@@ -13,7 +13,7 @@ class Move:
         self.tag = tag  # used on self vs enemy
         self.effect = effect  # effects, implementing later
 
-    def critical(self):  # FIXME
+    def critical(self):  # FIXME: only once
         critHit = (random.randint(0, 100) > 90)  # 10%
 
         if critHit:
@@ -24,12 +24,12 @@ class Move:
         pass
 
 
-class Splash(Move):
+class Splinter(Move):
     def __init__(self):
         super().__init__("Splash", 2)
 
 
-class Loaf(Move):
+class DoNothing(Move):
     def __init__(self):
         super().__init__("Loaf", 0)
 

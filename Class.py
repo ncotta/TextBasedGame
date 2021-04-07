@@ -11,6 +11,7 @@ class MyClass:
         self.statsList = statsList
 
     def queryLooks(self):
+        # Get looks for printing purposes
         print(f"{self.appearance}")
 
 
