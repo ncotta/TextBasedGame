@@ -5,6 +5,7 @@ For now, download all files into one folder and run CharacterCreation.py
 
 # ~~~ TO-DO ~~~
 - Map
+  - Terrain, encounters, etc
 - Story
   - Implement stat checks
 - Inventory System
