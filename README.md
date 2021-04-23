@@ -16,3 +16,4 @@ For now, download all files into one folder and run CharacterCreation.py
 - Battle revamp
   - Multi-enemy battles
   - types?
+- Better Documentation
