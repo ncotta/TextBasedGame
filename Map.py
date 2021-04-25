@@ -4,6 +4,7 @@ Author: Niklaas Cotta
 """
 
 import random
+import time
 
 
 class Map:
@@ -12,27 +13,54 @@ class Map:
             self.layout = []  # Grid of NxN tiles
         self.size = size
 
-        tileDict = {0: "M", 1: "X", 2: "X", 3: "X", 4: "0"}
         for row in range(self.size):
             self.layout.append([])
             for col in range(self.size):
-                tileType = tileDict[random.randint(0, 4)]
-                tile = Tile(tileType)
+                tileChance = random.randint(1, 10)
+                if tileChance <= 7:  # 70%
+                    tile = Grass()
+                elif 8 <= tileChance <= 9:  # 20%
+                    tile = Mountain()
+                else:  # 10%
+                    tile = Water()
+
                 self.layout[row].append(tile)
 
     def printMap(self):
         for row in range(self.size):
             print("\n")
             for col in range(self.size):
+                time.sleep(1/self.size)
                 print(self.layout[row][col].appearance, end='     ')
 
 
 class Tile:
-    def __init__(self, appearance):
-        self.appearance = appearance
-        # self.name = mountain, water, grass
-        # self.encounter_chance = 10, 25, 50
-        # class encounter
+    def __init__(self):
+        pass
+
+
+class Grass(Tile):
+    def __init__(self):
+        super().__init__()
+        self.appearance = "wW"
+        self.name = "Grassland"
+        self.encounterChance = 15
+
+
+class Mountain(Tile):
+    def __init__(self):
+        super().__init__()
+        self.appearance = "//"
+        self.name = "Mountains"
+        self.encounterChance = 25
+
+
+class Water(Tile):
+    def __init__(self):
+        super().__init__()
+        self.appearance = "()"
+        self.name = "Lake"
+        self.encounterChance = 5
 
 
 if __name__ == '__main__':
