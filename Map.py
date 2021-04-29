@@ -9,15 +9,21 @@ import time
 
 # Map
 class Map:
-    def __init__(self, size, layout=None):
-        if layout is None:
-            self.layout = []  # Grid of NxN tiles
+    def __init__(self, size):
+        """
+        Desc: Sets up map
+        Input: size; how big a map you want, size x size large
+               layout; nothing for now
+        Output: None (creates map)
+        """
+        self.layout = []
         self.size = size
 
+    def genLayout(self):
         for row in range(self.size):
-            self.layout.append([])
+            self.layout.append([])  # rows
             for col in range(self.size):
-                tileChance = random.randint(1, 10)
+                tileChance = random.randint(1, 10)  # different chances for different tiles
                 if tileChance <= 7:  # 70%
                     tile = Grass()
                 elif 8 <= tileChance <= 9:  # 20%
@@ -25,29 +31,28 @@ class Map:
                 else:  # 10%
                     tile = Water()
 
-                self.layout[row].append(tile)
-                tile.x = row
-                tile.y = col
+                if (col == (self.size - 1)) and (row == (self.size -1)):
+                    tile = Character()
 
-        # Character gen
-        oldTile = self.layout[-1][(self.size // 2)]
-        player = Character(oldTile)
-        self.layout[-1][(self.size // 2)] = player
-        player.x = oldTile.x
-        player.y = oldTile.y
+                self.layout[row].append(tile)  # cols
+
+                # x and y values, future use?
+                tile.x = col
+                tile.y = row
 
     def printMap(self):
         for row in range(self.size):
             print("\n")
             for col in range(self.size):
                 time.sleep(1 / self.size)
-                print(self.layout[row][col].appearance, end='     ')
+                tileImage = self.layout[row][col].appearance
+                print(tileImage, end='     ')
 
     def returnPlayer(self):
         for row in range(self.size):
             for col in range(self.size):
-                if self.layout[row][col].appearance == "<>":
-                    return row, col
+                if self.layout[row][col].name == "Player":
+                    return col, row
 
 
 # Tiles
@@ -61,11 +66,11 @@ class Tile:
 
 
 class Character(Tile):
-    def __init__(self, tile):
+    def __init__(self):
         super().__init__()
         self.appearance = "<>"
         self.name = "Player"
-        self.stored = tile.appearance[:]
+        self.encounterChance = 0
 
 
 class Grass(Tile):
@@ -102,24 +107,38 @@ class Encounter:
 class Movement:
     def __init__(self):
         self.moveSpeed = 1  # Navigate one tile
-        self.sourceAppearance = None
 
-    def movePlayer(self, direction, source):  # FIXME, doesn't actually update tile :(
+    def swapTile2D(self, tile1, tile2, layout):
+        row1 = tile1.y
+        col1 = tile1.x
+
+        row2 = tile2.y
+        col2 = tile2.x
+        layout[row1][col1], layout[row2][col2] = layout[row2][col2], layout[row1][col1]
+
+    def getDest(self, direction, row, col, layout):
         if direction == 1:  # North
-            source.x -= self.moveSpeed
+            row -= self.moveSpeed
         elif direction == 2:  # South
-            source.x += self.moveSpeed
+            row += self.moveSpeed
         elif direction == 3:  # East
-            source.y += self.moveSpeed
+            col += self.moveSpeed
         elif direction == 4:  # West
-            source.y -= self.moveSpeed
+            col -= self.moveSpeed
+
+        return layout[row][col]
 
 
 if __name__ == '__main__':
     myMap = Map(5)
+    myMap.genLayout()
     while True:
         print("\n==============================================")
         myMap.printMap()
-        movement = Movement()
-        x, y = myMap.returnPlayer()
-        movement.movePlayer(1, myMap.layout[x][y])
+        turnMove = Movement()
+        getColPlayer, getRowPlayer = myMap.returnPlayer()
+        player = myMap.layout[getRowPlayer][getColPlayer]
+        dest = turnMove.getDest(1, getRowPlayer, getColPlayer, myMap.layout)
+
+        turnMove.swapTile2D(player, dest, myMap.layout)
+
