@@ -9,17 +9,20 @@ import time
 
 # Map
 class Map:
-    def __init__(self, size):
+    def __init__(self, mapSize):
         """
-        Desc: Sets up map
+        Desc: Constructor for map class
         Input: size; how big a map you want, size x size large
-               layout; nothing for now
-        Output: None (creates map)
         """
         self.layout = []
-        self.size = size
+        self.size = mapSize
 
     def genLayout(self):
+        """
+        Desc: Generates map layout
+        Input: None
+        Output: None
+        """
         for row in range(self.size):
             self.layout.append([])  # rows
             for col in range(self.size):
@@ -31,16 +34,18 @@ class Map:
                 else:  # 10%
                     tile = Water()
 
-                if (col == (self.size - 1)) and (row == (self.size -1)):
-                    tile = Character()
-
                 self.layout[row].append(tile)  # cols
 
-                # x and y values, future use?
+                # x and y values of tile
                 tile.x = col
                 tile.y = row
 
     def printMap(self):
+        """
+        Desc: Prints map out row by row
+        Input: None
+        Output: None
+        """
         for row in range(self.size):
             print("\n")
             for col in range(self.size):
@@ -49,10 +54,25 @@ class Map:
                 print(tileImage, end='     ')
 
     def returnPlayer(self):
+        """
+        Desc: Finds player in map
+        Input: None
+        Output: tuple x,y coords
+        """
         for row in range(self.size):
             for col in range(self.size):
                 if self.layout[row][col].name == "Player":
                     return col, row
+
+    def placePlayer(self, coords):
+        x, y = coords
+        for row in range(self.size):
+            for col in range(self.size):
+                if (row == y) and (col == x):
+                    self.layout[row][col] = Character()
+                    player = self.layout[row][col]
+                    player.x = col
+                    player.y = row
 
 
 # Tiles
@@ -115,8 +135,13 @@ class Movement:
         row2 = tile2.y
         col2 = tile2.x
         layout[row1][col1], layout[row2][col2] = layout[row2][col2], layout[row1][col1]
+        row1, row2 = tile2.y, tile1.y
+        col1, col2 = tile2.x, tile1.x
 
-    def getDest(self, direction, row, col, layout):
+        return col1, row1  # return new coords
+
+    def getDest(self, direction, coords, layout):
+        col, row = coords
         if direction == 1:  # North
             row -= self.moveSpeed
         elif direction == 2:  # South
@@ -130,15 +155,22 @@ class Movement:
 
 
 if __name__ == '__main__':
-    myMap = Map(5)
+    # Generate map and get start position
+    size = 5
+    myMap = Map(size)
     myMap.genLayout()
-    while True:
+    playerStart = (myMap.size//2, myMap.size-1)
+
+    while size != 0:
+        # Place player tile then print map out
         print("\n==============================================")
+        myMap.placePlayer(playerStart)
         myMap.printMap()
+
+        # Movement
         turnMove = Movement()
-        getColPlayer, getRowPlayer = myMap.returnPlayer()
-        player = myMap.layout[getRowPlayer][getColPlayer]
-        dest = turnMove.getDest(1, getRowPlayer, getColPlayer, myMap.layout)
-
-        turnMove.swapTile2D(player, dest, myMap.layout)
-
+        dest = turnMove.getDest(1, playerStart, myMap.layout)
+        # print("Player Position: ", playerStart)
+        playerCol, playerRow = playerStart
+        playerStart = turnMove.swapTile2D(myMap.layout[playerRow][playerCol], dest, myMap.layout)
+        size -= 1
