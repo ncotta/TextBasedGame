@@ -14,7 +14,9 @@ For now, download all files into one folder and run CharacterCreation.py<br/>
 - Easy AI for enemies
 - GUI
 - Installer
-- Better enemies, bosses?
+- Better enemies
+  - Bosses?
+  - Some form of super basic AI?
 - Battle revamp
   - Multi-enemy battles
   - types?
