@@ -3,9 +3,8 @@ Moves Class
 Author: Niklaas Cotta
 """
 
-import random
-import time
 from CharacterCreation import *
+from EnemyHandler import *
 
 
 # Map
@@ -75,7 +74,7 @@ class Map:
         for row in range(self.size):
             for col in range(self.size):
                 if (row == y) and (col == x):
-                    self.layout[row][col] = Character()
+                    self.layout[row][col] = Player()
                     player = self.layout[row][col]
                     player.x = col
                     player.y = row
@@ -95,12 +94,16 @@ class Tile:
         print("X: " + self.x + "Y: " + self.y)
 
 
-class Character(Tile):  # Player Tile
+class Player(Tile):  # Player Tile
     def __init__(self):
         super().__init__()
         self.appearance = "<>"
         self.name = "Player"
         self.encounterChance = 0
+
+    @classmethod
+    def generatePlayer(cls):
+        pass
 
 
 class Grass(Tile):  # Grasslands
@@ -108,7 +111,7 @@ class Grass(Tile):  # Grasslands
         super().__init__()
         self.appearance = "wW"
         self.name = "Grassland"
-        self.encounterChance = 15
+        self.encounterChance = 50
 
 
 class Mountain(Tile):  # Mountains
@@ -124,26 +127,17 @@ class Water(Tile):  # Water
         super().__init__()
         self.appearance = "()"
         self.name = "Lake"
-        self.encounterChance = 5
+        self.encounterChance = 10
 
 
 # Encounters
 class Encounter:
-    def __init__(self, character, defStats=None):
-        if defStats is None:
-            defStats = [10, 10, 10]
-
+    def __init__(self, character):
         self.character = character
-        self.stats = defStats
-        self.encounterMap = {1: Character("Dummy", Dummy(self.stats), None, self.stats, Dummy(self.stats).movesList),
-                             2: Character("Hulking Dummy", Dummy([12, 12, 12]), None, [12, 12, 12], Dummy([12, 12, 12]).movesList),
-                             3: Character("Blighted Rose", MonsterA(self.stats), None, self.stats, MonsterA(self.stats).movesList),
-                             4: Character("Hall Monitor", Lizard(self.stats), None, self.stats, Lizard(self.stats).movesList),
-                             5: Character("Cuddlefish", Werepus(self.stats), None, self.stats, Lizard(self.stats).movesList)}
 
     def startBattle(self):
-        enemy = self.encounterMap[random.randint(1, 5)]
-        mapBattle = Fight(self.character, enemy).battle()
+        enemy = self.character.generateEnemy()
+        Fight(self.character, enemy).battle()
 
 
 # Map movement
@@ -203,9 +197,13 @@ if __name__ == '__main__':
     myMap.genLayout()
     playerStart = (myMap.size//2, myMap.size-1)
 
+    # Create Character
+    characterObj = Character.generatePlayer()
+    characterObj.info()
+
     while size != 0:
         # Place player tile then print map out
-        print("\n==============================================")
+
         myMap.placePlayer(playerStart)
         myMap.printMap()
 
@@ -215,4 +213,9 @@ if __name__ == '__main__':
         # print("Player Position: ", playerStart)
         playerCol, playerRow = playerStart
         playerStart = turnMove.swapTile2D(myMap.layout[playerRow][playerCol], dest, myMap.layout)
+        n = random.randint(0, 100)
+        print("\n==============================================")
+        if n < dest.encounterChance:  # fix encounter chance lol
+            print("\n A WILD ENEMY ATTACKS!!")
+            Encounter(characterObj).startBattle()
         size -= 1

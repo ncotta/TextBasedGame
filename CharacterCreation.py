@@ -6,6 +6,7 @@ Author: Niklaas Cotta
 from DelayPrint import *
 from Selection import *
 from Battle import *
+from EnemyHandler import *
 import time
 
 
@@ -55,7 +56,7 @@ class Character:
         time.sleep(1.5)
 
     @classmethod
-    def get_input(cls):
+    def generatePlayer(cls):
         """
         Desc: Class method, creates a character and fills in parameters with user input when called
         Input: None
@@ -74,10 +75,30 @@ class Character:
             raceObj.movesList  # moves
         )
 
+    @classmethod
+    def generateEnemy(cls):
+        """
+        Desc: Class method, creates an enemy and fills in parameters with randomly generated info
+        Input: None
+        Output: Character() instance
+        """
+        raceObj = randomRace()
+        classObj = randomClass()
+        name = randomName(raceObj)
+        moves = randomMoves(raceObj)
+        genStats = randomStats()
+        return cls(
+            name,
+            raceObj,
+            classObj,
+            genStats,
+            moves
+        )
+
 
 if __name__ == '__main__':
     # TODO: combine with Map.py main
-    characterObj = Character.get_input()
+    characterObj = Character.generatePlayer()
     characterObj.info()
     print("")
     stats = [10, 10, 10]

@@ -14,7 +14,7 @@ class Fight:
         self.enemyHP = enemy.hp
         self.yourMoves = char.movesList
         self.enemyMoves = enemy.movesList
-        print(f"A {enemy.name} attacks!")
+        print(f"\nA {enemy.name} attacks!")
 
     def battle(self):
         result = "LOST"
