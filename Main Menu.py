@@ -3,8 +3,8 @@ Bringing it all together
 Author: Niklaas Cotta
 """
 
-from CharacterCreation import *
 from DiceRoll import *
+from Map import *
 
 
 def title():
@@ -12,7 +12,7 @@ def title():
     print("========================================\n")
     time.sleep(0.2)
     print("               ", end='')
-    delay_print("NIK'S GAME")
+    delay_print("MY GAME")
     print("\n")
     print("========================================\n")
 
@@ -53,49 +53,42 @@ def menu():
 
 
 def game():
-    characterObject = Character.get_input()
+    size = 5
+    myMap = Map(size)
+    myMap.genLayout()
+    playerStart = (myMap.size // 2, myMap.size - 1)
+
+    # Create Character
+    characterObject = Character.generatePlayer()
     characterObject.info()
 
-    enemyObject = getEnemy()
-    charStatus = Fight(characterObject, enemyObject).battle()
+    print(" [1] Go!\n",
+          "[2] Exit")
 
-    if charStatus == "LOST":
-        exit()
-    else:  # ran away or won the battle
-        print("\n")
-        print("========================================")
-        time.sleep(0.2)
-        print("               ", end='')
-        delay_print("YOU WIN!!")
-        print("========================================")
+    userIn = input(">> ")
+    if userIn == "1":
+        while size != 0:
+            # Place player tile then print map out
 
+            myMap.placePlayer(playerStart)
+            myMap.printMap()
 
-def getEnemy():
-    randEnemy = random.randint(1, 3)
+            # Movement
+            turnMove = Movement()
+            dest = turnMove.getDest(1, playerStart, myMap.layout)
+            # print("Player Position: ", playerStart)
+            playerCol, playerRow = playerStart
+            playerStart = turnMove.swapTile2D(myMap.layout[playerRow][playerCol], dest, myMap.layout)
+            n = random.randint(0, 100)
+            print("\n==============================================")
+            if n < dest.encounterChance:  # fix encounter chance lol
+                print("\n A WILD ENEMY APPEARS!! ")
+                Encounter(characterObject).startBattle()
+            size -= 1
 
-    if randEnemy == 1:  # Lizard
-        stats = [12, 10, 8]
-        enemyName = "Red Lizard"
-        enemyRace = Lizard(stats)
-    elif randEnemy == 2:  # Werepus
-        stats = [8, 12, 10]
-        enemyName = "Rotten Werepus"
-        enemyRace = Werepus(stats)
-    else:  # MonsterA
-        stats = [10, 8, 12]
-        enemyName = "Wilted MonsterA"
-        enemyRace = MonsterA(stats)
+        delay_print("\n       THE END        \n")
 
-    randClass = random.randint(1, 3)
-
-    if randClass == 1:  # Brute
-        enemyClass = Brute(stats)
-    elif randClass == 2:  # MonkEY
-        enemyClass = MonkEY(stats)
-    else:  # WitchDoctor
-        enemyClass = WitchDoctor(stats)
-
-    return Character(enemyName, enemyRace, enemyClass, stats, enemyRace.movesList)
+    exit()
 
 
 if __name__ == '__main__':

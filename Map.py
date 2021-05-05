@@ -191,31 +191,4 @@ class Movement:
 
 
 if __name__ == '__main__':
-    # Generate map and get start position
-    size = 5
-    myMap = Map(size)
-    myMap.genLayout()
-    playerStart = (myMap.size//2, myMap.size-1)
-
-    # Create Character
-    characterObj = Character.generatePlayer()
-    characterObj.info()
-
-    while size != 0:
-        # Place player tile then print map out
-
-        myMap.placePlayer(playerStart)
-        myMap.printMap()
-
-        # Movement
-        turnMove = Movement()
-        dest = turnMove.getDest(1, playerStart, myMap.layout)
-        # print("Player Position: ", playerStart)
-        playerCol, playerRow = playerStart
-        playerStart = turnMove.swapTile2D(myMap.layout[playerRow][playerCol], dest, myMap.layout)
-        n = random.randint(0, 100)
-        print("\n==============================================")
-        if n < dest.encounterChance:  # fix encounter chance lol
-            print("\n A WILD ENEMY ATTACKS!!")
-            Encounter(characterObj).startBattle()
-        size -= 1
+    pass
