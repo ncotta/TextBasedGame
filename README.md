@@ -6,6 +6,8 @@ For now, download all files into one folder and run Main Menu.py<br/>
 # ~~~ TO-DO ~~~
 - Map
   - ~~Terrain~~, ~~encounters~~
+  - Take keyboard input
+  - Corners/edges
 - ~~Handler for random enemy generation~~
 - Story
   - ~~Combine main of characterCreation.py and Map.py~~
@@ -17,7 +19,10 @@ For now, download all files into one folder and run Main Menu.py<br/>
 - Battle revamp
   - Multi-enemy battles
   - types?
-
+<br/>
 - Better Documentation
 - GUI
 - Installer
+<br/>
+- Testing
+  - Protect code against invalid inputs
