@@ -1,7 +1,7 @@
 # TextBasedGame
 A text based adventure game in python.<br/>
 Made by Niklaas Cotta.<br/>
-For now, download all files into one folder and run CharacterCreation.py<br/>
+For now, download all files into one folder and run Main Menu.py<br/>
 
 # ~~~ TO-DO ~~~
 - Map
