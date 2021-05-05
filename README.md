@@ -8,7 +8,7 @@ For now, download all files into one folder and run CharacterCreation.py<br/>
   - ~~Terrain~~, ~~encounters~~
 - ~~Handler for random enemy generation~~
 - Story
-  - Combine main of characterCreation.py and Map.py
+  - ~~Combine main of characterCreation.py and Map.py~~
   - Implement stat checks
 - Inventory System
 - Easy AI for enemies
