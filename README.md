@@ -5,8 +5,8 @@ For now, download all files into one folder and run CharacterCreation.py<br/>
 
 # ~~~ TO-DO ~~~
 - Map
-  - ~~Terrain~~, encounters
-- Handler for random enemy generation
+  - ~~Terrain~~, ~~encounters~~
+- ~~Handler for random enemy generation~~
 - Story
   - Combine main of characterCreation.py and Map.py
   - Implement stat checks
