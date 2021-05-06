@@ -4,10 +4,10 @@ Made by Niklaas Cotta.<br/>
 For now, download all files into one folder and run Main Menu.py<br/>
 
 # ~~~ TO-DO ~~~
-- Map
+- ~~Map~~
   - ~~Terrain~~, ~~encounters~~
-  - Take keyboard input
-  - Corners/edges
+  - ~~Take keyboard input~~
+  - ~~Corners/edges~~
 - ~~Handler for random enemy generation~~
 - Story
   - ~~Combine main of characterCreation.py and Map.py~~
