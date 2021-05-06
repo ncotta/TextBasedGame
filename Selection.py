@@ -5,6 +5,13 @@ Author: Niklaas Cotta
 
 from Race import *
 from Class import *
+import time
+
+
+def enum_delay(enumList):
+    for i, j in enumerate(enumList):
+        print(f"[{i + 1}]", j)
+        time.sleep(0.25)
 
 
 class Selection:
@@ -19,10 +26,14 @@ class Selection:
 
         while True:
             print("Pick a race!")
-            for i, j in enumerate(races):
-                print(f"[{i + 1}]", j)
+            enum_delay(races)
 
-            choice = int(input('>> '))
+            try:
+                choice = int(input(">> "))
+
+            except ValueError:
+                print("Invalid input!")
+                continue
 
             if choice <= len(races):  # FIXME: corner cases
                 if choice == 1:
@@ -51,10 +62,14 @@ class Selection:
         while True:
             print("Pick a class!")
 
-            for i, j in enumerate(classes):
-                print(f"[{i + 1}]", j)
+            enum_delay(classes)
 
-            choice = int(input('>> '))  # FIXME: corner cases
+            try:
+                choice = int(input(">> "))
+
+            except ValueError:
+                print("Invalid input!")
+                continue
 
             if choice <= len(classes):
                 if choice == 1:

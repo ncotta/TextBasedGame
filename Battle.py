@@ -4,6 +4,7 @@ Author: Niklaas Cotta
 """
 
 from Moves import *
+import time
 
 
 class Fight:
@@ -101,8 +102,14 @@ class Fight:
 
             for i, j in enumerate(self.yourMoves):
                 print(f"[{i + 1}]", j.name)
+                time.sleep(0.25)
 
-            choice = int(input(">> "))
+            try:
+                choice = int(input(">> "))
+
+            except ValueError:
+                print("Invalid input!")
+                continue
 
             print(f"You used {self.yourMoves[choice - 1].name}")
 

@@ -111,7 +111,7 @@ class Grass(Tile):  # Grasslands
         super().__init__()
         self.appearance = "wW"
         self.name = "Grassland"
-        self.encounterChance = 50
+        self.encounterChance = 60
 
 
 class Mountain(Tile):  # Mountains
@@ -119,7 +119,7 @@ class Mountain(Tile):  # Mountains
         super().__init__()
         self.appearance = "//"
         self.name = "Mountains"
-        self.encounterChance = 25
+        self.encounterChance = 35
 
 
 class Water(Tile):  # Water
@@ -179,13 +179,25 @@ class Movement:
         """
         col, row = coords
         if direction == 1:  # North
-            row -= self.moveSpeed
+            if row == 0:  # Top edge
+                print("Cannot go any further North!")
+            else:
+                row -= self.moveSpeed
         elif direction == 2:  # South
-            row += self.moveSpeed
+            if row == (layout.size - 1):  # Bottom edge
+                print("Cannot go any further South!")
+            else:
+                row += self.moveSpeed
         elif direction == 3:  # East
-            col += self.moveSpeed
+            if col == (layout.size - 1):  # Right edge
+                print("Cannot go any further East!")
+            else:
+                col += self.moveSpeed
         elif direction == 4:  # West
-            col -= self.moveSpeed
+            if col == 0:  # Left edge
+                print("Cannot go any further West!")
+            else:
+                col -= self.moveSpeed
 
         return layout[row][col]
 
