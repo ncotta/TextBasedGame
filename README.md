@@ -13,9 +13,13 @@ For now, download all files into one folder and run Main Menu.py<br/>
 - Story
   - ~~Combine main of characterCreation.py and Map.py~~
   - Implement stat checks
+  - Random events (benefit player)
 - Inventory System
+  - Experience levels
+  - Monetary system
 - Better enemies
   - Bosses?
+  - Random stats for player
   - Some form of super basic AI?
 - Battle revamp
   - Multi-enemy battles
