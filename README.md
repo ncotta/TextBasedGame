@@ -8,11 +8,13 @@ For now, download all files into one folder and run Main Menu.py<br/>
   - ~~Terrain~~, ~~encounters~~
   - ~~Take keyboard input~~
   - ~~Corners/edges~~
-  - Key for map terrain
-  - Rectangular dimensions rather than square
+  - ~~Key for map terrain~~
+  - ~~Rectangular dimensions rather than square~~
 - ~~Handler for random enemy generation~~
 - Story
   - ~~Combine main of characterCreation.py and Map.py~~
+  - ~~Story base~~
+  - Flesh out story
   - Implement stat checks
   - Random events (benefit player)
 - Inventory System
