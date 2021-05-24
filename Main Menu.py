@@ -5,17 +5,17 @@ Author: Niklaas Cotta
 
 from DiceRoll import *
 from Map import *
-from CharacterCreation import *
+from Story import *
 
 
 def title():
     time.sleep(2)
-    print("========================================\n")
+    delay_print("========================================\n", 0.025)
     time.sleep(0.2)
     print("               ", end='')
     delay_print("MY GAME", 0.25)
     print("\n")
-    print("========================================\n")
+    delay_print("========================================\n", 0.025)
 
     time.sleep(1)
 
@@ -25,16 +25,7 @@ def menu():
         options = ["Start", "Test Dice", "Help", "Quit"]
         enum_delay(options)
 
-        choice = input(">> ")
-        try:
-            choice = int(choice)
-            if not (1 <= choice <= 4):
-                print("Invalid option. Please try again.")
-                menu()
-
-        except ValueError:
-            print("Invalid option. Please try again.")
-            menu()
+        choice = checkChoice(options, menu)
 
         if choice == 1:  # Start
             game()
@@ -63,9 +54,13 @@ def game():
     characterObject = Character.generatePlayer()
     characterObject.info()
 
-    print(" [1] Go!\n",
-          "[2] Exit")
+    newStory = Prison(characterObject)
+    newStory.title()
+    newStory.step0()
 
+    options = ["Continue", "Pause"]
+
+    enum_delay(options)
     userIn = input(">> ")
     if userIn == "1":
         print("===============()===============", end='')

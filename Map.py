@@ -18,6 +18,11 @@ class Map:
         self.rows = rows
         self.cols = cols
 
+        self.terrains = {"[<>]": "This is you!",
+                         "[wW]": "Grassy plains",
+                         "[//]": "Sparse mountains",
+                         "[()]": "Glassy lakes"}
+
     def genLayout(self):
         """
         Desc: Generates map layout
@@ -55,14 +60,11 @@ class Map:
                 print(tileImage, end='     ')
 
     def printTerrain(self):
-        print("Map Key!")
+        print("Map Key")
         print("================================")
-        terrains = {"[<>]": "This is you!",
-                    "[wW]": "Grassy plains",
-                    "[//]": "Sparse mountains",
-                    "[()]": "Glassy lakes"}
-        for i in terrains:
-            print(i, terrains[i])
+
+        for i in self.terrains:
+            print(i, self.terrains[i])
 
         print("================================")
 

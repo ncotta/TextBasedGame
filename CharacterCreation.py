@@ -3,7 +3,6 @@ Character Creator Program
 Author: Niklaas Cotta
 """
 
-from DelayPrint import *
 from Selection import *
 from Battle import *
 from EnemyHandler import *

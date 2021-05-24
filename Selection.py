@@ -3,15 +3,9 @@ User input selection choices
 Author: Niklaas Cotta
 """
 
+from DelayPrint import *
 from Race import *
 from Class import *
-import time
-
-
-def enum_delay(enumList):
-    for i, j in enumerate(enumList):
-        print(f"[{i + 1}]", j)
-        time.sleep(0.25)
 
 
 class Selection:
