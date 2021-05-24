@@ -15,6 +15,7 @@ For now, download all files into one folder and run Main Menu.py<br/>
   - ~~Combine main of characterCreation.py and Map.py~~
   - ~~Story base~~
   - Flesh out story
+  - Add a puzzle to the story??
   - Implement stat checks
   - Random events (benefit player)
 - Inventory System
