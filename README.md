@@ -4,17 +4,23 @@ Made by Niklaas Cotta.<br/>
 For now, download all files into one folder and run Main Menu.py<br/>
 
 # ~~~ TO-DO ~~~
-- Map
+- ~~Map~~
   - ~~Terrain~~, ~~encounters~~
-  - Take keyboard input
-  - Corners/edges
+  - ~~Take keyboard input~~
+  - ~~Corners/edges~~
+  - Key for map terrain
+  - Rectangular dimensions rather than square
 - ~~Handler for random enemy generation~~
 - Story
   - ~~Combine main of characterCreation.py and Map.py~~
   - Implement stat checks
+  - Random events (benefit player)
 - Inventory System
+  - Experience levels
+  - Monetary system
 - Better enemies
   - Bosses?
+  - Random stats for player
   - Some form of super basic AI?
 - Battle revamp
   - Multi-enemy battles
