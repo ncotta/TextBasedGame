@@ -5,6 +5,7 @@ Author: Niklaas Cotta
 
 from DiceRoll import *
 from Map import *
+from CharacterCreation import *
 
 
 def title():
@@ -52,10 +53,11 @@ def menu():
 
 
 def game():
-    size = 5
-    myMap = Map(size)
+    rows = 5
+    cols = 5
+    myMap = Map(rows, cols)
     myMap.genLayout()
-    playerStart = (myMap.size // 2, myMap.size - 1)
+    playerStart = (myMap.cols // 2, myMap.rows - 1)
 
     # Create Character
     characterObject = Character.generatePlayer()
@@ -66,13 +68,17 @@ def game():
 
     userIn = input(">> ")
     if userIn == "1":
-        print("===============()===============")
+        print("===============()===============", end='')
+        i = 1
         while True:
             # Place player tile then print map out
-
             myMap.placePlayer(playerStart)
             myMap.printMap()
-            print("\n\n")
+            print("\n")
+            if i == 1:
+                myMap.printTerrain()
+                print("\n")
+                i = 0
             directions = ["North", "South", "East", "West"]
             enum_delay(directions)
 
@@ -85,7 +91,7 @@ def game():
 
             # Movement
             turnMove = Movement()
-            dest = turnMove.getDest(userDir, playerStart, myMap.layout)
+            dest = turnMove.getDest(userDir, playerStart, myMap)
             # print("Player Position: ", playerStart)
             playerCol, playerRow = playerStart
             playerStart = turnMove.swapTile2D(myMap.layout[playerRow][playerCol], dest, myMap.layout)

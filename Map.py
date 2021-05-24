@@ -3,19 +3,20 @@ Moves Class
 Author: Niklaas Cotta
 """
 
-from CharacterCreation import *
-from EnemyHandler import *
+from Battle import *
+import random
 
 
 # Map
 class Map:
-    def __init__(self, mapSize):
+    def __init__(self, rows, cols):
         """
         Desc: Constructor for map class
         Input: size; how big a map you want, size x size large
         """
         self.layout = []
-        self.size = mapSize
+        self.rows = rows
+        self.cols = cols
 
     def genLayout(self):
         """
@@ -23,9 +24,9 @@ class Map:
         Input: None
         Output: None
         """
-        for row in range(self.size):
+        for row in range(self.rows):
             self.layout.append([])  # rows
-            for col in range(self.size):
+            for col in range(self.cols):
                 tileChance = random.randint(1, 10)  # different chances for different tiles
                 if tileChance <= 7:  # 70%
                     tile = Grass()
@@ -46,12 +47,24 @@ class Map:
         Input: None
         Output: None
         """
-        for row in range(self.size):
+        for row in range(self.rows):
             print("\n")
-            for col in range(self.size):
-                time.sleep(1 / self.size)
+            for col in range(self.cols):
+                time.sleep(1 / self.rows)
                 tileImage = self.layout[row][col].appearance
                 print(tileImage, end='     ')
+
+    def printTerrain(self):
+        print("Map Key!")
+        print("================================")
+        terrains = {"[<>]": "This is you!",
+                    "[wW]": "Grassy plains",
+                    "[//]": "Sparse mountains",
+                    "[()]": "Glassy lakes"}
+        for i in terrains:
+            print(i, terrains[i])
+
+        print("================================")
 
     def returnPlayer(self):
         """
@@ -59,8 +72,8 @@ class Map:
         Input: None
         Output: tuple x,y coords
         """
-        for row in range(self.size):
-            for col in range(self.size):
+        for row in range(self.rows):
+            for col in range(self.cols):
                 if self.layout[row][col].name == "Player":
                     return col, row
 
@@ -71,8 +84,8 @@ class Map:
         Output: None
         """
         x, y = coords
-        for row in range(self.size):
-            for col in range(self.size):
+        for row in range(self.rows):
+            for col in range(self.cols):
                 if (row == y) and (col == x):
                     self.layout[row][col] = Player()
                     player = self.layout[row][col]
@@ -117,7 +130,7 @@ class Grass(Tile):  # Grasslands
 class Mountain(Tile):  # Mountains
     def __init__(self):
         super().__init__()
-        self.appearance = "//"
+        self.appearance = "//"  # /\
         self.name = "Mountains"
         self.encounterChance = 35
 
@@ -169,7 +182,7 @@ class Movement:
 
         return col1, row1  # return new coords
 
-    def getDest(self, direction, coords, layout):
+    def getDest(self, direction, coords, myMap):
         """
         Desc: Get destination of where tile is going
         Input: direction; up (1), down (2), right (3), left (4)
@@ -184,12 +197,12 @@ class Movement:
             else:
                 row -= self.moveSpeed
         elif direction == 2:  # South
-            if row == (layout.size - 1):  # Bottom edge
+            if row == (myMap.rows - 1):  # Bottom edge
                 print("Cannot go any further South!")
             else:
                 row += self.moveSpeed
         elif direction == 3:  # East
-            if col == (layout.size - 1):  # Right edge
+            if col == (myMap.cols - 1):  # Right edge
                 print("Cannot go any further East!")
             else:
                 col += self.moveSpeed
@@ -199,8 +212,4 @@ class Movement:
             else:
                 col -= self.moveSpeed
 
-        return layout[row][col]
-
-
-if __name__ == '__main__':
-    pass
+        return myMap.layout[row][col]
