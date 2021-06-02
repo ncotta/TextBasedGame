@@ -99,6 +99,21 @@ class Character:
             moves
         )
 
+    @classmethod
+    def generateTutorialEnemy(cls):
+        raceObj = TutorialEnemy([5, 5, 5])
+        classObj = randomClass()
+        name = raceObj.name
+        moves = raceObj.movesList
+        genStats = raceObj.statsList
+        return cls(
+            name,
+            raceObj,
+            classObj,
+            genStats,
+            moves
+        )
+
 
 if __name__ == '__main__':
     # TODO: combine with Map.py main

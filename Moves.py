@@ -109,3 +109,8 @@ class Root(Move):
 class Absorb(Move):
     def __init__(self):
         super().__init__("Absorb", -4, "self")
+
+
+class Trust(Move):
+    def __init__(self):
+        super().__init__("TRUST HIM NOT", 0)

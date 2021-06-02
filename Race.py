@@ -62,3 +62,12 @@ class Dummy(Race):
                          None,
                          statsList,
                          [Splinter(), DoNothing()])
+
+
+class TutorialEnemy(Race):
+    def __init__(self, statsList):
+        super().__init__("Sickly old man",
+                         "Only a Prophet could have such an inverted appearance",
+                         None,
+                         statsList,
+                         [Trust()])

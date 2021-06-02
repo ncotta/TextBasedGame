@@ -3,7 +3,7 @@ Story aspect
 Author: Niklaas Cotta
 """
 
-from CharacterCreation import *
+from Map import *
 from DelayPrint import *
 
 
@@ -32,7 +32,7 @@ class Prison(Chapter):
               "is the remnants of a sputtering torch. You feel an oppressive\n"
               "presence in the darkness.\n")
 
-        options = ["Try the door", "Search for something useful", "Do nothing"]
+        options = ["Try the door (Feat of Strength)", "Search for something useful", "Do nothing"]
         enum_delay(options)
         print("=======================================================")
 
@@ -54,7 +54,7 @@ class Prison(Chapter):
         delay_print(". . .", 0.4)
         print("You lose yourself in oblivion for a short while.\n")
 
-        options = ["Try the door", "Search for something useful", "Do nothing"]
+        options = ["Try the door (Feat of Strength)", "Search for something useful", "Do nothing"]
         enum_delay(options)
         print("=======================================================")
 
@@ -111,9 +111,17 @@ class Prison(Chapter):
 
         print("=======================================================")
         delay_print(". . .", 0.75)
+        self.fightTutorial()
 
-        print("You step outside. The swaying grassy plains and sharp mountains look\n"
-              "no more familiar than did the prison")
+    def step7(self):
+        time.sleep(1.5)
+        print("You step outside. A sea of lush grassy plains, and mountains pierce\n"
+              "the clouds. You crane your neck to look for the tops, but you can\n"
+              "see none.")
 
         print("=======================================================")
         time.sleep(1.5)
+
+    def fightTutorial(self):
+        TutorialEncounter(self.character).startBattle()
+        self.step7()

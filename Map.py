@@ -3,6 +3,7 @@ Moves Class
 Author: Niklaas Cotta
 """
 
+from CharacterCreation import *
 from Battle import *
 import random
 
@@ -152,6 +153,24 @@ class Encounter:
 
     def startBattle(self):
         enemy = self.character.generateEnemy()
+        Fight(self.character, enemy).battle()
+
+
+class RandomEncounter(Encounter):
+    def __init__(self, character):
+        super().__init__(character)
+
+    def startBattle(self):
+        enemy = self.character.generateEnemy()
+        Fight(self.character, enemy).battle()
+
+
+class TutorialEncounter(Encounter):
+    def __init__(self, character):
+        super().__init__(character)
+
+    def startBattle(self):
+        enemy = self.character.generateTutorialEnemy()
         Fight(self.character, enemy).battle()
 
 
