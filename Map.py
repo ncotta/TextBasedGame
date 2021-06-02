@@ -116,6 +116,7 @@ class Player(Tile):  # Player Tile
         self.appearance = "<>"
         self.name = "Player"
         self.encounterChance = 0
+        self.eventChance = 0
 
     @classmethod
     def generatePlayer(cls):
@@ -128,6 +129,7 @@ class Grass(Tile):  # Grasslands
         self.appearance = "wW"
         self.name = "Grassland"
         self.encounterChance = 60
+        self.eventChance = 10
 
 
 class Mountain(Tile):  # Mountains
@@ -136,6 +138,7 @@ class Mountain(Tile):  # Mountains
         self.appearance = "//"  # /\
         self.name = "Mountains"
         self.encounterChance = 35
+        self.eventChance = 20
 
 
 class Water(Tile):  # Water
@@ -144,6 +147,7 @@ class Water(Tile):  # Water
         self.appearance = "()"
         self.name = "Lake"
         self.encounterChance = 10
+        self.eventChance = 30
 
 
 # Encounters
@@ -172,6 +176,25 @@ class TutorialEncounter(Encounter):
     def startBattle(self):
         enemy = self.character.generateTutorialEnemy()
         Fight(self.character, enemy).battle()
+   
+
+# Random events that benefit player
+class Event:
+    def __init__(self, character):
+        self.character = character
+    
+    def eventDetails(self):
+        pass
+
+    
+class Blessing(Event):
+    def __init__(self, character):
+        super().__init__(character)
+        
+    def eventDetails(self):
+        print("Your head begins to vibrate and time slows to a crawl. You hunch over and close your eyes. You feel stronger.")
+        # self.character.attack += 1?
+    
 
 
 # Map movement
