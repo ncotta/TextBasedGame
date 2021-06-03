@@ -111,6 +111,6 @@ class Absorb(Move):
         super().__init__("Absorb", -4, "self")
 
 
-class Trust(Move):
+class Hurt(Move):
     def __init__(self):
-        super().__init__("TRUST HIM NOT", 0)
+        super().__init__("Moan", 2, "self")

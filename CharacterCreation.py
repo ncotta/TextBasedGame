@@ -114,6 +114,9 @@ class Character:
             moves
         )
 
+    def increaseAttack(self, n):
+        self.attack += n
+
 
 if __name__ == '__main__':
     # TODO: combine with Map.py main

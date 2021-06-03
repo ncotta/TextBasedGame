@@ -97,14 +97,19 @@ class GameLoop:
                 # print("Player Position: ", playerStart)
                 playerCol, playerRow = playerStart
                 playerStart = turnMove.swapTile2D(myMap.layout[playerRow][playerCol], dest, myMap.layout)
-                n = random.randint(0, 100)
+                foundEnemy = random.randint(0, 100) < dest.encounterChance
+                foundEvent = random.randint(0, 100) < dest.eventChance
                 print("\n===============()===============")
-                if n < dest.encounterChance:  # fix encounter chance lol
+                if foundEnemy:  # fix encounter chance lol
                     print("\n A WILD ENEMY APPEARS!! ")
                     Encounter(self.characterObject).startBattle()
+                elif foundEvent:
+                    print("\n You feel like you are being watched.")
+                    print(f"DEBUG: PRE ATTACK CHECK: {self.characterObject.attack}")
+                    Blessing(self.characterObject)
+                    print(f"DEBUG: POST ATTACK CHECK: {self.characterObject.attack}")
 
-            # delay_print("\n       THE END        \n")
-
+        delay_print("\n       THE END        \n", 0.25)
         exit()
 
 

@@ -58,7 +58,7 @@ class MonsterA(Race):
 class Dummy(Race):
     def __init__(self, statsList): # [10, 10, 10]
         super().__init__("Dummy",
-                         "A training dummy. You don't like the way it's looking at you",
+                         "A training dummy. It's sinister gaze gives you goose bumps",
                          None,
                          statsList,
                          [Splinter(), DoNothing()])
@@ -70,4 +70,4 @@ class TutorialEnemy(Race):
                          "Only a Prophet could have such an inverted appearance",
                          None,
                          statsList,
-                         [Trust()])
+                         [Hurt()])

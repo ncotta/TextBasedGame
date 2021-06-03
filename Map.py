@@ -192,9 +192,9 @@ class Blessing(Event):
         super().__init__(character)
         
     def eventDetails(self):
-        print("Your head begins to vibrate and time slows to a crawl. You hunch over and close your eyes. You feel stronger.")
-        # self.character.attack += 1?
-    
+        print("Your head begins to vibrate and time slows to a crawl. You close your eyes and cower in fear.\n"
+              "Moments pass. You feel your inner eye begin to wake.")
+        self.character.increaseAttack(2)
 
 
 # Map movement

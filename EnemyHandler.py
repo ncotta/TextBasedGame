@@ -82,3 +82,4 @@ if __name__ == '__main__':
     print(testName)
     print(testRace.statsList)
     [print(move.name, end=', ') for move in testMoves]
+
